@@ -1,0 +1,9 @@
+# Default configuration
+
+agent:
+  registration_timeout: 30
+  heartbeat_interval: 10
+orchestrator:
+  task_assignment_interval: 5
+dashboard:
+  refresh_interval: 10
