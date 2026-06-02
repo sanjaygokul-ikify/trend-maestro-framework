@@ -1,0 +1,10 @@
+# Project configuration
+
+[tool.poetry]
+name = "maestro-framework"
+version = "1.0.0"
+description = "A highly scalable and customizable distributed multi-agent orchestration framework"
+authors = ["Your Name <your@email.com>"]
+
+[tool.poetry.dependencies]
+python = ">=3.8"
