@@ -11,13 +11,13 @@ class Engine:
         self.tasks: Dict[str, Task] = {}
         self.dashboards: Dict[str, Dashboard] = {}
 
-    def register_agent(self, agent_id: str, agent: Agent):
+    def register_agent(self, agent_id: str, agent: 'Agent') -> None:
         logger.info(f"Registering agent {agent_id}")
         if agent_id in self.agents:
             raise MaestroException(f"Agent {agent_id} already registered")
         self.agents[agent_id] = agent
 
-    def assign_task(self, task_id: str, agent_id: str, task: Task):
+    def assign_task(self, task_id: str, agent_id: str, task: 'Task') -> None:
         logger.info(f"Assigning task {task_id} to agent {agent_id}")
         if agent_id not in self.agents:
             raise MaestroException(f"Agent {agent_id} not found")
@@ -26,7 +26,7 @@ class Engine:
         self.tasks[task_id] = task
         self.agents[agent_id].tasks.append(task_id)
 
-    def complete_task(self, task_id: str):
+    def complete_task(self, task_id: str) -> None:
         logger.info(f"Completing task {task_id}")
         if task_id not in self.tasks:
             raise MaestroException(f"Task {task_id} not found")
@@ -36,7 +36,7 @@ class Engine:
                 agent.tasks.remove(task_id)
         del self.tasks[task_id]
 
-    def aggregate_task(self, task_id: str):
+    def aggregate_task(self, task_id: str) -> str:
         logger.info(f"Aggregating task {task_id}")
         if task_id not in self.tasks:
             raise MaestroException(f"Task {task_id} not found")
@@ -44,7 +44,7 @@ class Engine:
         # Perform aggregation logic here
         return task.result
 
-    def visualize_task(self, task_id: str):
+    def visualize_task(self, task_id: str) -> str:
         logger.info(f"Visualizing task {task_id}")
         if task_id not in self.tasks:
             raise MaestroException(f"Task {task_id} not found")
