@@ -10,7 +10,7 @@ class Executor:
     def __init__(self, engine: Engine):
         self.engine: Engine = engine
 
-    def execute_task(self, task_id: str):
+    def execute_task(self, task_id: str) -> None:
         logger.info(f"Executing task {task_id}")
         try:
             task = self.engine.tasks[task_id]
@@ -20,11 +20,13 @@ class Executor:
             logger.error(f"Error executing task {task_id}: {e}")
             raise
 
-    def visualize_dashboard(self, dashboard_id: str):
+    def visualize_dashboard(self, dashboard_id: str) -> List[str]:
         logger.info(f"Visualizing dashboard {dashboard_id}")
         try:
-            dashboard = self.engine.dashboards[dashboard_id]
             # Perform dashboard visualization logic here
+            dashboard = self.engine.dashboards.get(dashboard_id)
+            if dashboard is None:
+                raise TaskNotFoundException(dashboard_id)
             return dashboard.tasks
         except MaestroException as e:
             logger.error(f"Error visualizing dashboard {dashboard_id}: {e}")
