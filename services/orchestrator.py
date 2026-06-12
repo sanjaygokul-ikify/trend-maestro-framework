@@ -5,11 +5,20 @@ class Orchestrator:
     def __init__(self):
         self.engine = Engine()
 
-    def register_agent(self, agent_id: str, agent: Agent) -> None:
-        self.engine.register_agent(agent_id, agent)
+    def register_agent(self, agent_id: str, agent: 'Agent') -> None:
+        try:
+            self.engine.register_agent(agent_id, agent)
+        except Exception as e:
+            print(f"Error registering agent {agent_id}: {e}")
 
-    def assign_task(self, task_id: str, agent_id: str, task: Task) -> None:
-        self.engine.assign_task(task_id, agent_id, task)
+    def assign_task(self, task_id: str, agent_id: str, task: 'Task') -> None:
+        try:
+            self.engine.assign_task(task_id, agent_id, task)
+        except Exception as e:
+            print(f"Error assigning task {task_id} to agent {agent_id}: {e}")
 
     def complete_task(self, task_id: str) -> None:
-        self.engine.complete_task(task_id)
+        try:
+            self.engine.complete_task(task_id)
+        except Exception as e:
+            print(f"Error completing task {task_id}: {e}")
