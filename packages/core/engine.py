@@ -51,3 +51,9 @@ class Engine:
         task = self.tasks[task_id]
         # Perform visualization logic here
         return task.visualization
+
+    def remove_agent(self, agent_id: str) -> None:
+        logger.info(f"Removing agent {agent_id}")
+        if agent_id not in self.agents:
+            raise MaestroException(f"Agent {agent_id} not found")
+        del self.agents[agent_id]
