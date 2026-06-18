@@ -3,7 +3,7 @@ from services.orchestrator import Orchestrator
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--action', choices=['register', 'assign', 'complete'])
+    parser.add_argument('--action', choices=['register', 'assign', 'complete', 'remove'])
     parser.add_argument('--agent-id')
     parser.add_argument('--task-id')
     parser.add_argument('--task-type')
@@ -22,3 +22,5 @@ def main():
         orchestrator.assign_task(args.task_id, args.agent_id, task)
     elif args.action == 'complete':
         orchestrator.complete_task(args.task_id)
+    elif args.action == 'remove':
+        orchestrator.remove_agent(args.agent_id)
