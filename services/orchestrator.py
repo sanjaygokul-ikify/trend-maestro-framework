@@ -22,3 +22,9 @@ class Orchestrator:
             self.engine.complete_task(task_id)
         except Exception as e:
             print(f"Error completing task {task_id}: {e}")
+
+    def remove_agent(self, agent_id: str) -> None:
+        try:
+            self.engine.remove_agent(agent_id)
+        except Exception as e:
+            print(f"Error removing agent {agent_id}: {e}")
