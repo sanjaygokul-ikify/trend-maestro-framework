@@ -57,3 +57,10 @@ class Engine:
         if agent_id not in self.agents:
             raise MaestroException(f"Agent {agent_id} not found")
         del self.agents[agent_id]
+    
+    def handle_agent_timeout(self, agent_id: str) -> None:
+        logger.info(f"Handling agent timeout for {agent_id}")
+        if agent_id in self.agents:
+            del self.agents[agent_id]
+        else:
+            logger.warning(f"Agent {agent_id} not found")
